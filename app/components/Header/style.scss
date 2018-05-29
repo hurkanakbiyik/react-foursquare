@@ -4,6 +4,7 @@
   height: 64px;
   padding: 0 16px;
   background-color: #fff;
+  border-bottom:4px solid #0732a1;
   img{
     width: 200px;
   }
@@ -25,11 +26,15 @@
         fill: #0732a1;
       }
     }
-    input{
+    form{
+      display: flex;
       flex: 1 1 auto;
-      padding: 8px 4px;
-      border: none;
-      outline: none;
+      input{
+        flex: 1 1 auto;
+        padding: 8px 4px;
+        border: none;
+        outline: none;
+      }
     }
   }
 

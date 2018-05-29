@@ -41,7 +41,6 @@
     "immutable": "3.8.2",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.5",
     "minimist": "1.2.0",
     "prop-types": "15.6.1",
     "react": "16.3.2",
@@ -59,7 +58,8 @@
     "sanitize.css": "4.1.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.4",
-    "with-query": "^1.0.2"
+    "with-query": "^1.0.2",
+    "openlayers": "^4.6.5"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "2.1.3",

@@ -5,7 +5,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import ReposList from 'components/ReposList';
+import ReposList from 'components/PointViewer';
 import HomePage from '../HomePage';
 import { mapDispatchToProps } from '../index';
 import { changeUsername } from '../actions';

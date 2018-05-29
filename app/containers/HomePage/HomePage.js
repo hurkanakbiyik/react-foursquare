@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet';
 import ReposList from 'components/ReposList';
 import './style.scss';
 import Header from '../../components/Header/Header';
+import PointViewer from '../../components/PointViewer/PointViewer';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -39,8 +40,10 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <Header {...this.props} />
           <section>
             <div className="list-area">
+              <ReposList {...reposListProps} />
             </div>
             <div className="map-area">
+              <PointViewer />
             </div>
           </section>
         </div>

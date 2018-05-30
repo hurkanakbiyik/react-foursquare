@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import RepoListItem from 'containers/RepoListItem';
+import VenueListItem from '../VenueListItem/VenueListItem';
 
-const ReposList = ({ loading, error, repos }) => {
+const VenuesList = ({ loading, error, venues }) => {
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -18,17 +18,17 @@ const ReposList = ({ loading, error, repos }) => {
     return <List component={ErrorComponent} />;
   }
 
-  if (repos !== false) {
-    return <List items={repos} component={RepoListItem} />;
+  if (venues !== false) {
+    return <List items={venues} component={VenueListItem} />;
   }
 
   return null;
 };
 
-ReposList.propTypes = {
+VenuesList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
-  repos: PropTypes.any
+  venues: PropTypes.any
 };
 
-export default ReposList;
+export default VenuesList;

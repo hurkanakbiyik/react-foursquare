@@ -1,14 +1,14 @@
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
-import RepoListItem from 'containers/RepoListItem';
+import RepoListItem from 'containers/VenueListItem';
 import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
-import ReposList from '../index';
+import VenuesList from '../index';
 
-describe('<ReposList />', () => {
+describe('<VenuesList />', () => {
   it('should render the loading indicator when its loading', () => {
-    const renderedComponent = shallow(<ReposList loading />);
+    const renderedComponent = shallow(<VenuesList loading />);
     expect(
       renderedComponent.contains(<List component={LoadingIndicator} />)
     ).toEqual(true);
@@ -16,7 +16,7 @@ describe('<ReposList />', () => {
 
   it('should render an error if loading failed', () => {
     const renderedComponent = mount(
-      <ReposList loading={false} error={{ message: 'Loading failed!' }} />
+      <VenuesList loading={false} error={{ message: 'Loading failed!' }} />
     );
     expect(renderedComponent.text()).toMatch(/Something went wrong/);
   });
@@ -34,7 +34,7 @@ describe('<ReposList />', () => {
       }
     ];
     const renderedComponent = shallow(
-      <ReposList repos={repos} error={false} />
+      <VenuesList repos={repos} error={false} />
     );
 
     expect(
@@ -46,7 +46,7 @@ describe('<ReposList />', () => {
 
   it('should not render anything if nothing interesting is provided', () => {
     const renderedComponent = shallow(
-      <ReposList repos={false} error={false} loading={false} />
+      <VenuesList repos={false} error={false} loading={false} />
     );
 
     expect(renderedComponent.html()).toEqual(null);

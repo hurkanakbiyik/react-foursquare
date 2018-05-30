@@ -6,11 +6,11 @@ import React from 'react';
 import { shallow, render } from 'enzyme';
 
 import ListItem from 'components/ListItem';
-import RepoListItem from '../RepoListItem';
+import VenueListItem from '../VenueListItem';
 
-const renderComponent = (props = {}) => render(<RepoListItem {...props} />);
+const renderComponent = (props = {}) => render(<VenueListItem {...props} />);
 
-describe.only('<RepoListItem />', () => {
+describe.only('<VenueListItem />', () => {
   let item;
 
   // Before each test reset the item data for safety
@@ -27,7 +27,7 @@ describe.only('<RepoListItem />', () => {
   });
 
   it('should render a ListItem', () => {
-    const renderedComponent = shallow(<RepoListItem item={item} />);
+    const renderedComponent = shallow(<VenueListItem item={item} />);
     expect(renderedComponent.find(ListItem).length).toBe(1);
   });
 

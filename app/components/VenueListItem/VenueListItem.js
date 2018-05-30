@@ -41,5 +41,4 @@ export default class VenueListItem extends React.PureComponent { // eslint-disab
 
 VenueListItem.propTypes = {
   item: PropTypes.object,
-  currentUser: PropTypes.string,
 };

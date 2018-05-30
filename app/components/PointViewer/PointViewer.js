@@ -5,14 +5,17 @@ import 'openlayers/css/ol.css';
 
 import './style.scss';
 
-export default class PointViewer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class PointViewer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.map = {};
+    this.placeLayer = {};
   }
   componentDidMount() {
     // OL map
-    const placeLayer = new ol.layer.Vector({
+    this.placeLayer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+      })
     });
 
     this.map = new ol.Map({
@@ -21,7 +24,7 @@ export default class PointViewer extends React.PureComponent { // eslint-disable
         new ol.layer.Tile({
           source: new ol.source.OSM()
         }),
-        placeLayer
+        this.placeLayer
       ],
       view: new ol.View({
         center: [949282, 6002552],
@@ -41,6 +44,27 @@ export default class PointViewer extends React.PureComponent { // eslint-disable
   }
 
   render() {
+    // this.placeLayer.getSource().clear();
+    if(this.props.venues){
+      const features = this.props.venues.map((venue) => {
+        const feature = new ol.Feature({
+          geometry: new ol.geom.Point(ol.proj.fromLonLat([venue.location.lng, venue.location.lat]))
+        });
+        feature.setStyle(new ol.style.Style({
+          image: new ol.style.Icon(({
+            anchor: [0, 0],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            src: `${venue.categories[0].icon.prefix}64${venue.categories[0].icon.suffix}`
+          }))
+        }));
+        return feature;
+      });
+      if(this.placeLayer.getSource()){
+        this.placeLayer.getSource()
+          .addFeatures(features);
+      }
+    }
     return (
       <div id="map"></div>
     );

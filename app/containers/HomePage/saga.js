@@ -9,6 +9,10 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
 
+import foursquareService from '../../services/foursquare/foursquare.services';
+import { LOAD_VENUES } from './constants';
+import { venuesLoaded, venuesLoadingError } from './actions';
+
 /**
  * Github repos request/response handler
  */
@@ -26,6 +30,23 @@ export function* getRepos() {
   }
 }
 
+export function* getVenues() {
+  // Select username from store
+  const username = yield select(makeSelectUsername());
+  try {
+    const result = yield call(foursquareService,
+      '/venues/explore',
+      { method: 'GET' },
+      {
+        ll: '40.7243,-74.0018',
+        query: username
+      });
+    yield put(venuesLoaded(result, username));
+  } catch (err) {
+    yield put(venuesLoadingError(err));
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -35,4 +56,5 @@ export default function* githubData() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(LOAD_REPOS, getRepos);
+  yield takeLatest(LOAD_VENUES, getVenues);
 }

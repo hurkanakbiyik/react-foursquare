@@ -7,10 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import ReposList from 'components/ReposList';
 import './style.scss';
 import Header from '../../components/Header/Header';
 import PointViewer from '../../components/PointViewer/PointViewer';
+import VenuesList from '../../components/VenuesList/VenuesList';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -23,11 +23,14 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   }
 
   render() {
-    const { loading, error, repos } = this.props;
-    const reposListProps = {
+    const {
+      loading, error, venues, total
+    } = this.props;
+    const venuessListProps = {
       loading,
       error,
-      repos,
+      venues,
+      total
     };
 
     return (
@@ -40,10 +43,10 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <Header {...this.props} />
           <section>
             <div className="list-area">
-              <ReposList {...reposListProps} />
+              <VenuesList {...venuessListProps} />
             </div>
             <div className="map-area">
-              <PointViewer />
+              <PointViewer {...venuessListProps} />
             </div>
           </section>
         </div>
@@ -58,11 +61,13 @@ HomePage.propTypes = {
     PropTypes.object,
     PropTypes.bool,
   ]),
-  repos: PropTypes.oneOfType([
+  venues: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.bool,
   ]),
   onSubmitForm: PropTypes.func,
   username: PropTypes.string,
+  search: PropTypes.string,
+  total: PropTypes.number,
   onChangeUsername: PropTypes.func,
 };

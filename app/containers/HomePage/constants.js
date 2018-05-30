@@ -10,3 +10,7 @@
  */
 
 export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+
+export const LOAD_VENUES = 'boilerplate/App/LOAD_VENUES';
+export const LOAD_VENUES_SUCCESS = 'boilerplate/App/LOAD_VENUES_SUCCESS';
+export const LOAD_VENUES_ERROR = 'boilerplate/App/LOAD_VENUES_ERROR';

@@ -6,19 +6,14 @@ import { createSelector } from 'reselect';
 
 const selectHome = (state) => state.get('home');
 
-const makeSelectUsername = () => createSelector(
+const makeSelectSearch = () => createSelector(
   selectHome,
-  (homeState) => homeState.get('username')
+  (homeState) => homeState.get('search')
 );
 
 const makeSelectVenues = () => createSelector(
   selectHome,
   (homeState) => homeState.get('venues')
-);
-
-const makeSelectSearch = () => createSelector(
-  selectHome,
-  (homeState) => homeState.get('search')
 );
 
 const makeSelectTotal = () => createSelector(
@@ -33,7 +28,6 @@ const makeSelectPosition = () => createSelector(
 
 export {
   selectHome,
-  makeSelectUsername,
   makeSelectSearch,
   makeSelectVenues,
   makeSelectTotal,

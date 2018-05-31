@@ -8,12 +8,11 @@ import {
   makeSelectLoading,
   makeSelectError
 } from 'containers/App/selectors';
-import { changeUsername, loadVenues, changeLocation } from './actions';
+import { changeSearch, loadVenues, changeLocation } from './actions';
 import {
   makeSelectPosition,
   makeSelectSearch,
   makeSelectTotal,
-  makeSelectUsername,
   makeSelectVenues,
 } from './selectors';
 import reducer from './reducer';
@@ -21,7 +20,7 @@ import saga from './saga';
 import HomePage from './HomePage';
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+  onChangeSearch: (evt) => dispatch(changeSearch(evt.target.value)),
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     // dispatch(loadRepos());
@@ -38,7 +37,6 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
   venues: makeSelectVenues(),
-  username: makeSelectUsername(),
   search: makeSelectSearch(),
   total: makeSelectTotal(),
   loading: makeSelectLoading(),

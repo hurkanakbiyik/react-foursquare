@@ -13,7 +13,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
         <div className="search-area">
           <MdSearch size={25} />
           <form onSubmit={this.props.onSubmitForm}>
-            <input onChange={this.props.onChangeUsername} type="text" placeholder={'Search'} />
+            <input onChange={this.props.onChangeSearch} type="text" placeholder={'Search'} />
           </form>
         </div>
       </div>
@@ -23,7 +23,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
 
 
 Header.propTypes = {
-  onChangeUsername: PropTypes.func,
+  onChangeSearch: PropTypes.func,
   onSubmitForm: PropTypes.func,
 };
 

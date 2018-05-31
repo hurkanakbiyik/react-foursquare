@@ -13,11 +13,8 @@ import PointViewer from '../../components/PointViewer/PointViewer';
 import VenuesList from '../../components/VenuesList/VenuesList';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
+    if (this.props.search && this.props.search.trim().length > 0) {
       this.props.onSubmitForm();
     }
     this.props.checkLocation();
@@ -81,8 +78,7 @@ HomePage.propTypes = {
   ]),
   onSubmitForm: PropTypes.func,
   checkLocation: PropTypes.func,
-  username: PropTypes.string,
   search: PropTypes.string,
   total: PropTypes.number,
-  onChangeUsername: PropTypes.func,
+  onChangeSearch: PropTypes.func,
 };

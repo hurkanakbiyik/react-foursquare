@@ -1,15 +1,15 @@
 import {
-  CHANGE_USERNAME,
+  CHANGE_SEARCH,
   LOAD_VENUES,
   LOAD_VENUES_SUCCESS,
   LOAD_VENUES_ERROR,
   LOCATION_CHANGED,
 } from './constants';
 
-export function changeUsername(name) {
+export function changeSearch(search) {
   return {
-    type: CHANGE_USERNAME,
-    name
+    type: CHANGE_SEARCH,
+    search
   };
 }
 

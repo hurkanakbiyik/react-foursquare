@@ -31,7 +31,6 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
         zoom: 4
       })
     });
-    this.map.addOverlay(popup);
     this.map.getView().animate({
       center: ol.proj.fromLonLat([this.props.position.coords.longitude,this.props.position.coords.latitude]),
       duration: 2000,

@@ -32,7 +32,7 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
       })
     });
     this.map.getView().animate({
-      center: ol.proj.fromLonLat([this.props.position.coords.longitude,this.props.position.coords.latitude]),
+      center: ol.proj.fromLonLat([this.props.position.coords.longitude, this.props.position.coords.latitude]),
       duration: 2000,
       zoom: 14
     });
@@ -47,8 +47,6 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
         feature.setStyle(new ol.style.Style({
           image: new ol.style.Icon(({
             anchor: [0, 0],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
             src: `${venue.categories[0].icon.prefix}64${venue.categories[0].icon.suffix}`
           }))
         }));
@@ -69,6 +67,10 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
 PointViewer.propTypes = {
   venues: PropTypes.oneOfType([
     PropTypes.array,
+    PropTypes.bool,
+  ]),
+  position: PropTypes.oneOfType([
+    PropTypes.object,
     PropTypes.bool,
   ]),
 };

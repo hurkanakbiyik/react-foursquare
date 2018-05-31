@@ -16,13 +16,21 @@ describe.only('<VenueListItem />', () => {
   // Before each test reset the item data for safety
   beforeEach(() => {
     item = {
-      owner: {
-        login: 'flexdinesh'
+      id: 1,
+      name: 'test',
+      location: {
+        distance: 100,
+        formattedAddress: 'test'
       },
-      html_url: 'https://github.com/flexdinesh/react-redux-boilerplate',
-      name: 'react-redux-boilerplate',
-      open_issues_count: 20,
-      full_name: 'flexdinesh/react-redux-boilerplate'
+      categories: [
+        {
+          id: 1,
+          icon: {
+            suffix: 'url',
+            prefix: 'test'
+          }
+        }
+      ]
     };
   });
 
@@ -30,35 +38,8 @@ describe.only('<VenueListItem />', () => {
     const renderedComponent = shallow(<VenueListItem item={item} />);
     expect(renderedComponent.find(ListItem).length).toBe(1);
   });
-
-  it('should not render the current username', () => {
-    const renderedComponent = renderComponent({
-      item,
-      currentUser: item.owner.login
-    });
-    expect(renderedComponent.text()).not.toContain(item.owner.login);
-  });
-
-  it('should render usernames that are not the current one', () => {
-    const renderedComponent = renderComponent({
-      item,
-      currentUser: 'nikgraf'
-    });
-    expect(renderedComponent.text()).toContain(item.owner.login);
-  });
-
   it('should render the repo name', () => {
     const renderedComponent = renderComponent({ item });
     expect(renderedComponent.text()).toContain(item.name);
-  });
-
-  it('should render the issue count', () => {
-    const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.text()).toContain(item.open_issues_count);
-  });
-
-  it('should render the IssueIcon', () => {
-    const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.find('svg').length).toBe(1);
   });
 });

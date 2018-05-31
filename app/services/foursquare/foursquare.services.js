@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+
 const withQuery = require('with-query');
 
 const API = {
@@ -26,7 +27,7 @@ function checkStatus(response) {
 
 export default function request(path, options, q) {
   const newQ = {
-    v: new Date().toISOString().slice(0, 10).replace(/-/g,''),
+    v: new Date().toISOString().slice(0, 10).replace(/-/g, ''),
     client_id: API.CLIENT_ID,
     client_secret: API.CLIENT_SECRET,
     ...q

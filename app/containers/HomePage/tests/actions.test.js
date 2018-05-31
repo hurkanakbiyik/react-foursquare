@@ -4,11 +4,11 @@ import { changeSearch } from '../actions';
 
 describe('Home Actions', () => {
   describe('changeSearch', () => {
-    it('should return the correct type and the passed name', () => {
+    it('should return the correct type and the passed search', () => {
       const fixture = 'Max';
       const expectedResult = {
         type: CHANGE_SEARCH,
-        name: fixture
+        search: fixture
       };
 
       expect(changeSearch(fixture)).toEqual(expectedResult);

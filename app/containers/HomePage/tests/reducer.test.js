@@ -7,7 +7,10 @@ describe('homeReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
-      username: ''
+      search: '',
+      venues: false,
+      total: 0,
+      position: false
     });
   });
 
@@ -17,9 +20,9 @@ describe('homeReducer', () => {
   });
 
   it('should handle the changeSearch action correctly', () => {
-    const fixture = 'flexdinesh';
-    const expectedResult = state.set('username', fixture);
+    const search = 'coffee';
+    const expectedResult = state.set('search', search);
 
-    expect(homeReducer(state, changeSearch(fixture))).toEqual(expectedResult);
+    expect(homeReducer(state, changeSearch(search))).toEqual(expectedResult);
   });
 });

@@ -20,12 +20,12 @@ describe('selectHome', () => {
 describe('makeSelectSearch', () => {
   const usernameSelector = makeSelectSearch();
   it('should select the username', () => {
-    const username = 'flexdinesh';
+    const search = 'coffee';
     const mockedState = fromJS({
       home: {
-        username,
+        search,
       },
     });
-    expect(usernameSelector(mockedState)).toEqual(username);
+    expect(usernameSelector(mockedState)).toEqual(search);
   });
 });

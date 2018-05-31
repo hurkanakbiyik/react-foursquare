@@ -3,39 +3,29 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
-import ReposList from 'components/PointViewer';
 import HomePage from '../HomePage';
 import { mapDispatchToProps } from '../index';
-import { changeSearch } from '../actions';
-import { loadRepos } from '../../App/actions';
+import { changeSearch, loadVenues } from '../actions';
 
 describe('<HomePage />', () => {
-  it('should render the repos list', () => {
-    const renderedComponent = shallow(
-      <HomePage loading error={false} repos={[]} />
-    );
-    expect(
-      renderedComponent.contains(<ReposList loading error={false} repos={[]} />)
-    ).toEqual(true);
-  });
-
-  it('should render fetch the repos on mount if a username exists', () => {
+  it('should render fetch the repos on mount if a search exists', () => {
     const submitSpy = jest.fn();
     mount(
       <HomePage
-        username="Not Empty"
-        onchangeSearch={() => {}}
+        search="Not Empty"
+        onChangeSearch={() => {}}
         onSubmitForm={submitSpy}
+        checkLocation={() => {}}
       />
     );
     expect(submitSpy).toHaveBeenCalled();
   });
 
-  it('should not call onSubmitForm if username is an empty string', () => {
+  it('should not call onSubmitForm if search is an empty string', () => {
     const submitSpy = jest.fn();
-    mount(<HomePage onchangeSearch={() => {}} onSubmitForm={submitSpy} />);
+    mount(<HomePage onChangeSearch={() => {}} onSubmitForm={submitSpy} checkLocation={() => {}} />);
     expect(submitSpy).not.toHaveBeenCalled();
   });
 
@@ -44,26 +34,27 @@ describe('<HomePage />', () => {
     mount(
       <HomePage
         username=""
-        onchangeSearch={() => {}}
+        onChangeSearch={() => {}}
         onSubmitForm={submitSpy}
+        checkLocation={() => {}}
       />
     );
     expect(submitSpy).not.toHaveBeenCalled();
   });
 
   describe('mapDispatchToProps', () => {
-    describe('onchangeSearch', () => {
+    describe('onChangeSearch', () => {
       it('should be injected', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        expect(result.onchangeSearch).toBeDefined();
+        expect(result.onChangeSearch).toBeDefined();
       });
 
       it('should dispatch changeSearch when called', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const username = 'flexdinesh';
-        result.onchangeSearch({ target: { value: username } });
+        result.onChangeSearch({ target: { value: username } });
         expect(dispatch).toHaveBeenCalledWith(changeSearch(username));
       });
     });
@@ -79,7 +70,7 @@ describe('<HomePage />', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         result.onSubmitForm();
-        expect(dispatch).toHaveBeenCalledWith(loadRepos());
+        expect(dispatch).toHaveBeenCalledWith(loadVenues());
       });
 
       it('should preventDefault if called with event', () => {

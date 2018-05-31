@@ -28,7 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   checkLocation: () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords);
       dispatch(changeLocation(position));
     });
   }

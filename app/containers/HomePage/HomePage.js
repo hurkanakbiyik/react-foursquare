@@ -20,18 +20,35 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     if (this.props.username && this.props.username.trim().length > 0) {
       this.props.onSubmitForm();
     }
+    this.props.checkLocation();
   }
 
   render() {
     const {
-      loading, error, venues, total
+      loading, error, venues, total, position
     } = this.props;
     const venuessListProps = {
       loading,
       error,
       venues,
-      total
+      total,
+      position
     };
+    let section = false;
+    if (position) {
+      section = (
+        <section>
+          <div className="list-area">
+            <VenuesList {...venuessListProps} />
+          </div>
+          <div className="map-area">
+            <PointViewer {...venuessListProps} />
+          </div>
+        </section>
+      );
+    } else {
+      section = <div className="error-info"><p>You need to allow location for using this product!</p></div>;
+    }
 
     return (
       <article>
@@ -41,14 +58,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         </Helmet>
         <div className="home-page">
           <Header {...this.props} />
-          <section>
-            <div className="list-area">
-              <VenuesList {...venuessListProps} />
-            </div>
-            <div className="map-area">
-              <PointViewer {...venuessListProps} />
-            </div>
-          </section>
+          {section}
         </div>
       </article>
     );
@@ -65,7 +75,12 @@ HomePage.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
+  position: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ]),
   onSubmitForm: PropTypes.func,
+  checkLocation: PropTypes.func,
   username: PropTypes.string,
   search: PropTypes.string,
   total: PropTypes.number,

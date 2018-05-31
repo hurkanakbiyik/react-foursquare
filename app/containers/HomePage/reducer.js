@@ -11,14 +11,15 @@
  */
 import { fromJS } from 'immutable';
 
-import { CHANGE_USERNAME, LOAD_VENUES, LOAD_VENUES_ERROR, LOAD_VENUES_SUCCESS } from './constants';
+import { CHANGE_USERNAME, LOAD_VENUES, LOAD_VENUES_ERROR, LOAD_VENUES_SUCCESS, LOCATION_CHANGED } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   username: '',
   search: '',
   venues: false,
-  total: 0
+  total: 0,
+  position: false
 });
 
 function homeReducer(state = initialState, action) {
@@ -26,6 +27,8 @@ function homeReducer(state = initialState, action) {
     case CHANGE_USERNAME:
       // Delete prefixed '@' from the github username
       return state.set('username', action.name.replace(/@/gi, ''));
+    case LOCATION_CHANGED:
+      return state.set('position', action.payload);
     case LOAD_VENUES:
       return state
         .set('loading', true)

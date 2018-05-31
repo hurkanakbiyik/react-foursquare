@@ -8,8 +8,14 @@ import {
   makeSelectLoading,
   makeSelectError
 } from 'containers/App/selectors';
-import { changeUsername, loadVenues } from './actions';
-import { makeSelectSearch, makeSelectTotal, makeSelectUsername, makeSelectVenues } from './selectors';
+import { changeUsername, loadVenues, changeLocation } from './actions';
+import {
+  makeSelectPosition,
+  makeSelectSearch,
+  makeSelectTotal,
+  makeSelectUsername,
+  makeSelectVenues,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import HomePage from './HomePage';
@@ -20,6 +26,12 @@ const mapDispatchToProps = (dispatch) => ({
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     // dispatch(loadRepos());
     dispatch(loadVenues());
+  },
+  checkLocation: () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords);
+      dispatch(changeLocation(position));
+    });
   }
 });
 
@@ -30,7 +42,8 @@ const mapStateToProps = createStructuredSelector({
   search: makeSelectSearch(),
   total: makeSelectTotal(),
   loading: makeSelectLoading(),
-  error: makeSelectError()
+  error: makeSelectError(),
+  position: makeSelectPosition()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -26,10 +26,16 @@ const makeSelectTotal = () => createSelector(
   (homeState) => homeState.get('total')
 );
 
+const makeSelectPosition = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('position')
+);
+
 export {
   selectHome,
   makeSelectUsername,
   makeSelectSearch,
   makeSelectVenues,
   makeSelectTotal,
+  makeSelectPosition
 };

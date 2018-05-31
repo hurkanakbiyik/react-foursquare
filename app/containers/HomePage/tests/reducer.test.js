@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 import homeReducer from '../reducer';
-import { changeUsername } from '../actions';
+import { changeSearch } from '../actions';
 
 describe('homeReducer', () => {
   let state;
@@ -16,10 +16,10 @@ describe('homeReducer', () => {
     expect(homeReducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should handle the changeUsername action correctly', () => {
+  it('should handle the changeSearch action correctly', () => {
     const fixture = 'flexdinesh';
     const expectedResult = state.set('username', fixture);
 
-    expect(homeReducer(state, changeUsername(fixture))).toEqual(expectedResult);
+    expect(homeReducer(state, changeSearch(fixture))).toEqual(expectedResult);
   });
 });

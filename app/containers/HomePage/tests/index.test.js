@@ -8,7 +8,7 @@ import { shallow, mount } from 'enzyme';
 import ReposList from 'components/PointViewer';
 import HomePage from '../HomePage';
 import { mapDispatchToProps } from '../index';
-import { changeUsername } from '../actions';
+import { changeSearch } from '../actions';
 import { loadRepos } from '../../App/actions';
 
 describe('<HomePage />', () => {
@@ -26,7 +26,7 @@ describe('<HomePage />', () => {
     mount(
       <HomePage
         username="Not Empty"
-        onChangeUsername={() => {}}
+        onchangeSearch={() => {}}
         onSubmitForm={submitSpy}
       />
     );
@@ -35,7 +35,7 @@ describe('<HomePage />', () => {
 
   it('should not call onSubmitForm if username is an empty string', () => {
     const submitSpy = jest.fn();
-    mount(<HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />);
+    mount(<HomePage onchangeSearch={() => {}} onSubmitForm={submitSpy} />);
     expect(submitSpy).not.toHaveBeenCalled();
   });
 
@@ -44,7 +44,7 @@ describe('<HomePage />', () => {
     mount(
       <HomePage
         username=""
-        onChangeUsername={() => {}}
+        onchangeSearch={() => {}}
         onSubmitForm={submitSpy}
       />
     );
@@ -52,19 +52,19 @@ describe('<HomePage />', () => {
   });
 
   describe('mapDispatchToProps', () => {
-    describe('onChangeUsername', () => {
+    describe('onchangeSearch', () => {
       it('should be injected', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        expect(result.onChangeUsername).toBeDefined();
+        expect(result.onchangeSearch).toBeDefined();
       });
 
-      it('should dispatch changeUsername when called', () => {
+      it('should dispatch changeSearch when called', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const username = 'flexdinesh';
-        result.onChangeUsername({ target: { value: username } });
-        expect(dispatch).toHaveBeenCalledWith(changeUsername(username));
+        result.onchangeSearch({ target: { value: username } });
+        expect(dispatch).toHaveBeenCalledWith(changeSearch(username));
       });
     });
 

@@ -1,17 +1,17 @@
-import { CHANGE_USERNAME } from '../constants';
+import { CHANGE_SEARCH } from '../constants';
 
-import { changeUsername } from '../actions';
+import { changeSearch } from '../actions';
 
 describe('Home Actions', () => {
-  describe('changeUsername', () => {
+  describe('changeSearch', () => {
     it('should return the correct type and the passed name', () => {
       const fixture = 'Max';
       const expectedResult = {
-        type: CHANGE_USERNAME,
+        type: CHANGE_SEARCH,
         name: fixture
       };
 
-      expect(changeUsername(fixture)).toEqual(expectedResult);
+      expect(changeSearch(fixture)).toEqual(expectedResult);
     });
   });
 });

@@ -19,19 +19,6 @@ describe('selectGlobal', () => {
   });
 });
 
-describe('makeSelectCurrentUser', () => {
-  const currentUserSelector = makeSelectCurrentUser();
-  it('should select the current user', () => {
-    const username = 'flexdinesh';
-    const mockedState = fromJS({
-      global: {
-        currentUser: username,
-      },
-    });
-    expect(currentUserSelector(mockedState)).toEqual(username);
-  });
-});
-
 describe('makeSelectLoading', () => {
   const loadingSelector = makeSelectLoading();
   it('should select the loading', () => {
@@ -55,21 +42,6 @@ describe('makeSelectError', () => {
       },
     });
     expect(errorSelector(mockedState)).toEqual(error);
-  });
-});
-
-describe('makeSelectRepos', () => {
-  const reposSelector = makeSelectRepos();
-  it('should select the repos', () => {
-    const repositories = fromJS([]);
-    const mockedState = fromJS({
-      global: {
-        userData: {
-          repositories,
-        },
-      },
-    });
-    expect(reposSelector(mockedState)).toEqual(repositories);
   });
 });
 

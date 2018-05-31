@@ -41,11 +41,15 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
       }
     });
     this.map.addOverlay(popup);
+    this.map.getView().animate({
+      center: ol.proj.fromLonLat([this.props.position.coords.longitude,this.props.position.coords.latitude]),
+      duration: 2000,
+      zoom: 12
+    });
   }
 
   render() {
-    // this.placeLayer.getSource().clear();
-    if(this.props.venues){
+    if (this.props.venues) {
       const features = this.props.venues.map((venue) => {
         const feature = new ol.Feature({
           geometry: new ol.geom.Point(ol.proj.fromLonLat([venue.location.lng, venue.location.lat]))
@@ -60,7 +64,8 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
         }));
         return feature;
       });
-      if(this.placeLayer.getSource()){
+      if (this.placeLayer) {
+        this.placeLayer.getSource().clear();
         this.placeLayer.getSource()
           .addFeatures(features);
       }
@@ -72,4 +77,8 @@ export default class PointViewer extends React.Component { // eslint-disable-lin
 }
 
 PointViewer.propTypes = {
+  venues: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.bool,
+  ]),
 };

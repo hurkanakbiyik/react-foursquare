@@ -8,7 +8,8 @@
   },
   "engines": {
     "npm": ">=3",
-    "node": ">=5"
+    "node": ">=5",
+    "yarn": "1.7.0"
   },
   "author": "Hürkan AKBIYIK",
   "license": "MIT",
@@ -16,8 +17,8 @@
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
-    "start": "cross-env NODE_ENV=development node server",
-    "start:production": "npm run test && npm run build && npm run start:prod",
+    "dev": "cross-env NODE_ENV=development node server",
+    "start": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
     "clean": "npm run test:clean && npm run build:clean",
     "lint": "npm run lint:js",
@@ -26,7 +27,8 @@
     "lint:js": "npm run lint:eslint -- . ",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
-    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll"
   },
   "dependencies": {
